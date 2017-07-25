@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.Dao.OpenlockDao">
+    <select id="match"  parameterType="map" resultType="cn.VO.User">
+    SELECT * FROM table_user WHERE phone_num=#{phoneNum} AND phone_identifier=#{phoneIdentifier}
+    </select>
+    <select id="equal" parameterType="java.lang.String" resultType="java.lang.String">
+SELECT l.lock_pwd
+FROM table_lock l,table_relate r,table_user u
+WHERE l.house_num = r.house_num
+	AND r.id_num = u.id_num
+	AND u.phone_num = #{phoneNum}
+    </select>
+    <select id="mac" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT mac_addr
+        FROM table_lock
+        WHERE lock_pwd=#{lockPwd}
+    </select>
+    <insert id="save" parameterType="java.lang.String">
+    INSERT INTO table_tmp(mac_addr) VALUES(#{macAddr})
+    </insert>
+    <update id="update" parameterType="java.lang.String">
+        UPDATE table_lock
+        SET lock_state='on'
+        WHERE lock_pwd=#{lockPwd}
+    </update>
+</mapper>

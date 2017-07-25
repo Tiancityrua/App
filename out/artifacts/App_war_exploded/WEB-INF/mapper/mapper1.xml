@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.Dao.LoginDao">
+
+
+    <select id="login" parameterType="Map" resultType="cn.VO.User">
+        SELECT * FROM table_user WHERE phone_num=#{phoneNum} AND pass_word=#{passWord}
+    </select>
+</mapper>

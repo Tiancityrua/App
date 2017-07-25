@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.Dao.LocklistDao">
+<select id="locklist"  parameterType="java.lang.String" resultType="cn.VO.Lock">
+        SELECT table_lock.*
+        FROM table_relate,table_user,table_lock
+        WHERE table_relate.id_num=table_user.id_num AND table_user.phone_num=#{phoneNum} and table_lock.house_num=table_relate.house_num
+</select>
+</mapper>
